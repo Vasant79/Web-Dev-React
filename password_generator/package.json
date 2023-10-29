@@ -1,5 +1,5 @@
 {
-  "name": "background_changer",
+  "name": "password_generator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
