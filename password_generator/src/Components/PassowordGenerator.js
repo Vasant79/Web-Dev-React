@@ -65,6 +65,15 @@ function PasswordGenerator() {
       setPwdLen(random.length);
     }
   }
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(password);
+      alert("Copied");
+    } catch (error) {
+      alert("Copy Failed");
+    }
+  };
   function handleClickNumberCheck() {
     //add some no to existing passsword
     setNumberCheck(!numberCheck);
@@ -77,7 +86,7 @@ function PasswordGenerator() {
     <div>
       <input type="text" value={password} />
       <button onClick={handleClick}>Generate</button>
-      <button>Copy</button>
+      <button onClick={handleCopy}>Copy</button>
 
       <label>Length</label>
       <input type="range" min="1" max="20" value={pwdLen} />
