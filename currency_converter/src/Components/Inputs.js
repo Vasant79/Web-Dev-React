@@ -15,13 +15,19 @@ function Inputs({ from = "usd", to }) {
   }
   return (
     <div>
-      <label>From {from}</label>
-      <input type="text" onChange={handleChange} required />
+      <div>
+        <label>From {from}</label>
+        <input type="text" onChange={handleChange} required />
+      </div>
 
-      <label>To inr</label>
-      <input type="text" value={convert} />
+      <div>
+        <label>To inr</label>
+        <input type="text" value={convert} />
+      </div>
 
-      <button onClick={handleClick}>Convert</button>
+      <div>
+        <button onClick={handleClick}>Convert</button>
+      </div>
     </div>
   );
 }

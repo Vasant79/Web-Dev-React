@@ -24,12 +24,13 @@ function App() {
   });
 
   return (
-    <div>
-      <select value={selectedCurr} onChange={handleChange}>
-        {render}
-      </select>
-      {/* now update currency ele when user select any other currency */} --
-      done
+    <div className="bg-neutral-300  h-screen w-screen text-black grid place-content-center">
+      <div className="p-2">
+        <select value={selectedCurr} onChange={handleChange}>
+          {render}
+        </select>
+      </div>
+      {/* now update currency ele when user select any other currency --   done */}
       <Inputs from={selectedCurr} to={res.inr} />{" "}
     </div>
   );
