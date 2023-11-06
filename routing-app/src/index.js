@@ -4,14 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-//reayc -routing
+//react -routing
 import Root from "./Components/Root";
 import ErrorPage from "./Components/ErrorPage";
-import Home from "./Components/Pages/Home";
-import About from "./Components/Pages/About";
-import ContactUs from "./Components/Pages/ContactUs";
-import Github from "./Components/Pages/Github";
-
+import Home from "./Components/Pages /Home";
+import About from "./Components/Pages /About";
+import ContactUs from "./Components/Pages /ContactUs";
+import Github from "./Components/Pages /Github";
 import {
   createBrowserRouter,
   createRoutesFromChildren,

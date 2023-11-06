@@ -1,6 +1,11 @@
 import "./App.css";
 import Root from "./Components/Root";
 
+/**
+ *
+ *  Doubt -- where does app goes ! why it is not rendered ?
+ */
+
 function App() {
   return (
     <div>
