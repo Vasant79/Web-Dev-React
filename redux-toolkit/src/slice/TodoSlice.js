@@ -18,6 +18,8 @@ export const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
+    //what does this state and action means
+    // state -- current state , action -- contains type and payload
     addTodo: (state, action) => {
       const todo = {
         id: nanoid(),
