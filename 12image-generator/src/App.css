@@ -1,0 +1,19 @@
+.input {
+  width: 50%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.card {
+  margin: 7px;
+}
