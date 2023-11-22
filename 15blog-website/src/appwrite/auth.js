@@ -5,7 +5,7 @@
  * code structure :
  * -- make a class( of service we are making) and its methods
  * -- exporting object of the class
- * explaniation this way oue ui need not to know what fun is using && it becomes easy in case
+ * explaniation this way our ui need not to know what fun is using && it becomes easy in case
  * vendor changes.
  */
 
@@ -18,7 +18,7 @@ class authentication {
   account;
 
   //constructor
-  User() {
+  authentication() {
     this.client
       .setEndpoint(config.appwriteUrl) // Your API Endpoint
       .setProject(config.appwriteProjectId); // Your project ID
@@ -26,7 +26,7 @@ class authentication {
     this.account = new Account(client);
   }
 
-  //methods -- craeting acc , logging in/out , current user
+  //async methods -- craeting acc , logging in/out , current user
   async createAccount({ name, email, password }) {
     try {
       const res = await account.create(ID.unique(), name, email, password);
