@@ -4,11 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+//rtk
+import store from "./components/store/store";
+import { Provider } from "react-redux";
+
 //establishing routing
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Error from "./components/pages/Error";
-
+import Login from "./components/pages/Login";
+import SignUp from "./components/pages/SignUp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,8 +21,16 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "home",
+        path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },
@@ -26,7 +39,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   </React.StrictMode>
 );
 

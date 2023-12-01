@@ -5,9 +5,11 @@ import "./App.css";
 function App() {
   return (
     <>
-      <div>
-        <h1>Password Generator</h1>
-        <PasswordGenerator />
+      <div className="container mx-auto p-10">
+        <div>
+          <div className="text-center text-2xl">Password Generator</div>
+          <PasswordGenerator />
+        </div>
       </div>
     </>
   );

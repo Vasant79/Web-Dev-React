@@ -3,7 +3,7 @@ import { useState } from "react";
 function PasswordGenerator() {
   //state which will store randomly generated psw
   const [password, setPassword] = useState("0");
-  const [pwdLen, setPwdLen] = useState(0);
+  const [pwdLen, setPwdLen] = useState(6);
   const [numberCheck, setNumberCheck] = useState(false);
   const [charCheck, setCharCheck] = useState(false);
 
@@ -48,19 +48,19 @@ function PasswordGenerator() {
   function handleClick() {
     if (numberCheck && charCheck) {
       //these fn takes len argument to genrate the following
-      let random = generatePassword(4) + generateChar(2) + generateNo(2);
+      let random = generatePassword(pwdLen) + generateChar(2) + generateNo(2);
       setPassword(random);
       setPwdLen(random.length);
     } else if (numberCheck) {
-      let random = generatePassword(4) + generateNo(2);
+      let random = generatePassword(pwdLen) + generateNo(2);
       setPassword(random);
       setPwdLen(random.length);
     } else if (charCheck) {
-      let random = generatePassword(4) + generateChar(2);
+      let random = generatePassword(pwdLen) + generateChar(2);
       setPassword(random);
       setPwdLen(random.length);
     } else {
-      let random = generatePassword(6);
+      let random = generatePassword(pwdLen);
       setPassword(random);
       setPwdLen(random.length);
     }
@@ -69,7 +69,7 @@ function PasswordGenerator() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(password);
-      alert("Copied");
+      //alert("Copied");
     } catch (error) {
       alert("Copy Failed");
     }
@@ -81,21 +81,37 @@ function PasswordGenerator() {
   function handleCharCheck() {
     setCharCheck(!charCheck);
   }
+  function handleChangeLength(event) {
+    setPwdLen(event.target.value);
+  }
 
   return (
-    <div>
-      <input type="text" value={password} />
-      <button onClick={handleClick}>Generate</button>
-      <button onClick={handleCopy}>Copy</button>
+    <div className=" grid grid-rows-3 grid-cols-3 p-5 w-full max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className=" flex items-center justify-center">
+        <input className="col-span-2" type="text" value={password} />
+        <div className="col-span-1">
+          <button onClick={handleCopy}>Copy</button>
+        </div>
+      </div>
+      <div>
+        <label>Length</label>
+        <input
+          type="range"
+          min="1"
+          max="20"
+          value={pwdLen}
+          onChange={handleChangeLength}
+        />
 
-      <label>Length</label>
-      <input type="range" min="1" max="20" value={pwdLen} />
+        <label>Numbers</label>
+        <input onClick={handleClickNumberCheck} type="checkBox" />
 
-      <label>Numbers</label>
-      <input onClick={handleClickNumberCheck} type="checkBox" />
-
-      <label>Characters</label>
-      <input onClick={handleCharCheck} type="checkBox" />
+        <label>Characters</label>
+        <input onClick={handleCharCheck} type="checkBox" />
+      </div>
+      <div>
+        <button onClick={handleClick}>Generate</button>
+      </div>
     </div>
   );
 }
