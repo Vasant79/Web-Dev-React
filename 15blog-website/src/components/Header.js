@@ -1,25 +1,34 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 
+//getting status from store
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "./slice/authSlice";
+
 function Header() {
   //make navItem -- header links
+  const authStatus = useSelector((state) => state.auth.status);
+  const dispatch = useDispatch();
+  console.log(authStatus);
+
   const navigate = useNavigate();
 
   const navItem = [
     {
       name: "Home",
       slug: "/home",
-      isActive: true,
+      isActive: authStatus, //display when auth staus true,
     },
     {
       name: "Login",
       slug: "/login",
-      isActive: true,
+      isActive: !authStatus,
     },
     {
       name: "Sign Up",
       slug: "/signup",
-      isActive: true,
+      isActive: !authStatus,
     },
   ];
 
@@ -43,8 +52,8 @@ function Header() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            class="h-8"
+            src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/letter-b-logo-design-template-167fa2497769af88f0cbd5d35c7dd2f8_screen.jpg?ts=1639748416"
+            className="h-10  rounded hover:border-4 hover:border-black"
             alt=" Logo"
           />
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -52,8 +61,14 @@ function Header() {
           </span>
         </Link>
 
-        <span>Logo</span>
-        <ul className="flex ">{renderNav}</ul>
+        <ul className="flex ">
+          {renderNav}
+          {authStatus && (
+            <li>
+              <Button onClick={() => dispatch(logout())}>Logout</Button>
+            </li>
+          )}
+        </ul>
       </div>
     </div>
   );

@@ -17,21 +17,26 @@ class authentication {
   client = new Client();
   account;
 
-  //constructor
-  authentication() {
+  //constructor -- mistake here wrote it in java format
+  constructor() {
     this.client
-      .setEndpoint(config.appwriteUrl) // Your API Endpoint
-      .setProject(config.appwriteProjectId); // Your project ID
+      .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint were not assscessable .env
+      .setProject("654e2103c2c1f9854391"); // Your project ID
 
-    this.account = new Account(client);
+    this.account = new Account(this.client);
   }
 
   //async methods -- craeting acc , logging in/out , current user
   async createAccount({ name, email, password }) {
     try {
-      const res = await account.create(ID.unique(), name, email, password);
-
-      if (res) {
+      const account = await this.account.create(
+        ID.unique(),
+        email,
+        password,
+        name
+      );
+      if (account) {
+        console.log("login taking place");
         return this.login({ email, password });
       } else {
         console.log("create account problem res not true");
@@ -43,7 +48,7 @@ class authentication {
 
   async login({ email, password }) {
     try {
-      return await account.createEmailSession(email, password);
+      return await this.account.createEmailSession(email, password);
     } catch (error) {
       console.log(`login error ${error}`);
     }
@@ -57,14 +62,15 @@ class authentication {
     }
   }
 
-  async currentUser() {
+  async getCurrentUser() {
     try {
-      await this.account.get();
+      return await this.account.get();
     } catch (error) {
       console.log(` current user ${error}`);
     }
+    return null;
   }
 }
 
-authService = new authentication();
+const authService = new authentication();
 export default authService;

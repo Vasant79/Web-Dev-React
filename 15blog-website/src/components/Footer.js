@@ -8,8 +8,8 @@ function Footer() {
           <div class="mb-6 md:mb-0">
             <Link to="#" class="flex items-center">
               <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                class="h-8 me-3"
+                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/letter-b-logo-design-template-167fa2497769af88f0cbd5d35c7dd2f8_screen.jpg?ts=1639748416"
+                className="h-10  rounded hover:border-4 hover:border-black"
                 alt=" Logo"
               />
               <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
