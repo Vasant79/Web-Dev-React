@@ -7,13 +7,19 @@
  * task - as user sign up data get loaded on appwrite update the state of auth in store --done
  * -- was writing reducer in createSlice
  * task -- create a logout button visible on when logged in --done
- * task make login work
+ * task make login work --done -- did not pass userdate to dispatch login, prevent default bhaviour
+ * task - when logging out make navigate to login page --done simply apply useNavigate hook
+ * task - user should be able to write blog --services that will make user write its blog
+ * task - user should be able to upload file --storage service creted - upload & downloade file
+ * task - figure out rte -- done internet issue npm installing package
  */
 import { useState } from "react";
 import authService from "../../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login } from "../slice/authSlice";
 import { useNavigate } from "react-router-dom";
+
+import Button from "../Button";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -53,61 +59,55 @@ function SignUp() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="my-auto mx-auto justify-center block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
-    >
-      <div>
-        <label>Name</label>
-        <input
-          className=" border-2 border-indigo-400 rounded  hover:border-indigo-700 "
-          type="text"
-          placeholder="name"
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          required
-        ></input>
-      </div>
+    <div className="h-80 w-1/4 m-auto my-20 px-10 p-10 border-2 rounded-md border-cyan-500  shadow-xl hover:border-cyan-900">
+      <form onSubmit={handleSubmit}>
+        <div className="mb-5">
+          <label className="font-bold">Name</label>
+          <br />
+          <input
+            className="border-2 rounded border-indigo-200 hover:border-indigo-700"
+            type="text"
+            value={name}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            required
+          ></input>
+        </div>
 
-      <div>
-        <label>Email</label>
-        <input
-          className="border-2 border-indigo-400 rounded  hover:border-indigo-700 "
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-          required
-        ></input>
-      </div>
+        <div className="mb-5">
+          <label className="font-bold">Email</label>
+          <br />
+          <input
+            className="border-2 rounded border-indigo-200 hover:border-indigo-700"
+            type="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            required
+          ></input>
+        </div>
 
-      <div>
-        <label>Password</label>
-        <input
-          className=" border-2 rounded border-indigo-400 hover:border-indigo-700"
-          type="password"
-          placeholder="password "
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          required
-        ></input>
-      </div>
+        <div className="mb-5">
+          <label className="font-bold">Password</label>
+          <br />
+          <input
+            className="border-2 rounded border-indigo-200 hover:border-indigo-700"
+            type="password"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            required
+          ></input>
+        </div>
 
-      <div>
-        <button
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="submit"
-        >
+        <Button className="p-1 border-2 rounded-md" type="submit">
           Sign up
-        </button>
-      </div>
-    </form>
+        </Button>
+      </form>
+    </div>
   );
 }
 

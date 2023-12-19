@@ -10,7 +10,6 @@ function Header() {
   //make navItem -- header links
   const authStatus = useSelector((state) => state.auth.status);
   const dispatch = useDispatch();
-  console.log(authStatus);
 
   const navigate = useNavigate();
 
@@ -47,8 +46,14 @@ function Header() {
     ) : null;
   });
 
+  function handleLogout() {
+    dispatch(logout()); // had problem did just logout
+    navigate("/login");
+  }
+  //console.log(authStatus);
+
   return (
-    <div className="bg-white border-gray-200 dark:bg-gray-900">
+    <div className="bg-white border-gray-200 dark:bg-gray-900 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img
@@ -65,7 +70,7 @@ function Header() {
           {renderNav}
           {authStatus && (
             <li>
-              <Button onClick={() => dispatch(logout())}>Logout</Button>
+              <Button onClick={handleLogout}>Logout</Button>
             </li>
           )}
         </ul>

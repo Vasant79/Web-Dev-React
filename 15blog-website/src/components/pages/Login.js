@@ -10,21 +10,16 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      console.log(email + " " + password);
-
       const session = await authService.login({ email, password });
-      console.log("session" + session);
 
       //update state
       if (session) {
         const userDate = await authService.getCurrentUser();
-        console.log("userData" + userDate);
 
         if (userDate) {
           dispatch(login(userDate));
@@ -36,29 +31,37 @@ function Login() {
     }
   }
 
-  console.log(authStatus);
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label> Email</label>
-        <input
-          type="email"
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-          reaquired
-        />
+    <div className=" h-50  w-1/4  m-auto my-20 px-10 p-10 border-2 rounded-md border-cyan-500  shadow-xl  hover:border-cyan-900">
+      <form className=" " onSubmit={handleSubmit}>
+        <div className=" mb-5">
+          <label className="font-bold"> Email</label>
+          <br />
+          <input
+            className="border-2 rounded  border-indigo-200 hover:border-2-700"
+            type="email"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            reaquired
+          />
+        </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          required
-        />
-
-        <Button type="submit">Submit</Button>
+        <div className="mb-5">
+          <label className="font-bold">Password</label>
+          <br />
+          <input
+            className="border-2 rounded border-indigo-200 hover:border-2-700"
+            type="password"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            required
+          />
+        </div>
+        <Button className="p-1 border-2 rounded-md " type="submit">
+          Login
+        </Button>
       </form>
     </div>
   );
