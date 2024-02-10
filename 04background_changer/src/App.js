@@ -6,19 +6,28 @@ function App() {
    * Made an Array of colors and used map
    */
   let color = [
-    "Red",
-    "Green",
-    "Blue",
-    "Pink",
-    "Yellow",
-    "Purple",
-    "Orange",
-    "Gray",
-    "Brown",
-    "Black",
+    {
+      name: "Grey",
+      code: "#EFECEC",
+    },
+    { name: "Peach", code: "#FFB0B0" },
+    { name: "Navy", code: "#0C2D57" },
+    { name: "Teal", code: "#8CB9BD" },
+    { name: "Orange", code: "#ECB159" },
+    { name: "Sage", code: "#ADBC9F" },
+    { name: "Winter", code: "#FBFADA" },
+    { name: "Maroon", code: "#720455" },
+    { name: "Beige", code: "#E9D5CA" },
+    { name: "Blue", code: "#40A2E3" },
   ];
   let renderOutput = color.map((eachColor) => {
-    return <ColorPicker key={eachColor} color={eachColor} />;
+    return (
+      <ColorPicker
+        key={eachColor.name}
+        color={eachColor.name}
+        code={eachColor.code}
+      />
+    );
   });
 
   return (
