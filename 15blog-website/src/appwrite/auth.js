@@ -1,48 +1,33 @@
-/**
- * authentication service -- appwrite provide this service
- * write code -- vendor restriction
- *
- * code structure :
- * -- make a class( of service we are making) and its methods
- * -- exporting object of the class
- * explaniation this way our ui need not to know what fun is using && it becomes easy in case
- * vendor changes.
- */
-
-import { Client, Account, ID } from "appwrite";
 import config from "../config/config";
+import { Client, Account, ID } from "appwrite";
 
-class authentication {
-  //prop
+export class AuthService {
   client = new Client();
   account;
 
-  //constructor -- mistake here wrote it in java format
   constructor() {
     this.client
-      .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint were not assscessable .env
-      .setProject("654e2103c2c1f9854391"); // Your project ID
-
+      .setEndpoint("https://cloud.appwrite.io/v1") //debug why config.appwriteUrl not working
+      .setProject("654e2103c2c1f9854391");
     this.account = new Account(this.client);
   }
 
-  //async methods -- craeting acc , logging in/out , current user
-  async createAccount({ name, email, password }) {
+  async createAccount({ email, password, name }) {
     try {
-      const account = await this.account.create(
+      const userAccount = await this.account.create(
         ID.unique(),
         email,
         password,
         name
       );
-      if (account) {
-        console.log("login taking place");
+      if (userAccount) {
+        // call another method
         return this.login({ email, password });
       } else {
-        console.log("create account problem res not true");
+        return userAccount;
       }
     } catch (error) {
-      console.log(`sign up error ${error}`);
+      throw error;
     }
   }
 
@@ -50,15 +35,7 @@ class authentication {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      console.log(`login error ${error}`);
-    }
-  }
-
-  async logout() {
-    try {
-      await this.account.deleteSessions();
-    } catch (error) {
-      console.log(`logout error ${error}`);
+      throw error;
     }
   }
 
@@ -66,11 +43,21 @@ class authentication {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log(` current user ${error}`);
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
+
     return null;
+  }
+
+  async logout() {
+    try {
+      await this.account.deleteSessions();
+    } catch (error) {
+      console.log("Appwrite serive :: logout :: error", error);
+    }
   }
 }
 
-const authService = new authentication();
+const authService = new AuthService();
+
 export default authService;

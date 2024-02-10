@@ -10,10 +10,10 @@ import { Provider } from "react-redux";
 
 //establishing routing
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Home from "./components/pages/Home";
-import Error from "./components/pages/Error";
-import Login from "./components/pages/Login";
-import SignUp from "./components/pages/SignUp";
+import Home from "./components/features/Home";
+import Error from "./components/features/Error";
+import Login from "./components/features/Login";
+import SignUp from "./components/features/SignUp";
 const router = createBrowserRouter([
   {
     path: "/",

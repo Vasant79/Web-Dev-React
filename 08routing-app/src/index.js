@@ -7,10 +7,10 @@ import reportWebVitals from "./reportWebVitals";
 //react -routing
 import Root from "./Components/Root";
 import ErrorPage from "./Components/ErrorPage";
-import Home from "./Components/Pages /Home";
-import About from "./Components/Pages /About";
-import ContactUs from "./Components/Pages /ContactUs";
-import Github from "./Components/Pages /Github";
+import Home from "./Components/pages /Home";
+import About from "./Components/pages /About";
+import ContactUs from "./Components/pages /ContactUs";
+import Github from "./Components/pages /Github";
 import {
   createBrowserRouter,
   createRoutesFromChildren,

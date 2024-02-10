@@ -8,12 +8,14 @@ function ColorPicker({ color }) {
   }
   return (
     <>
-      <button
-        className=" w-28 ml-2 mt-10 font-mono font-light  text-xl shadow-lg  bg-white rounded-lg border-1 border-black"
-        onClick={handleClick}
-      >
-        {color}
-      </button>
+      <span className="flex justify-center">
+        <button
+          className="mt-10 mb-5 w-32  bg-white border-2 shadwow-xl rounded-xl"
+          onClick={handleClick}
+        >
+          {color}
+        </button>
+      </span>
     </>
   );
 }

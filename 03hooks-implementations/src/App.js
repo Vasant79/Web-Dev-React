@@ -1,7 +1,9 @@
 import { useRef } from "react";
 
-import Timer from "./UseReff/Timer";
-import Example2 from "./UseReff/Example2";
+import Timer from "./UseReff & UseState/Timer";
+import Example2 from "./UseReff & UseState/Example2";
+import ReactFormHook from "./ReactHookForms/ReactFormHook";
+import Form from "./ForwardRef/Form";
 import "./App.css";
 
 function App() {
@@ -17,9 +19,13 @@ function App() {
   }
   return (
     <div>
-      <button onClick={handleClick}>Click Me</button>
+      {/* <button onClick={handleClick}>Click Me</button>
       <Timer />
-      <Example2 />
+      <Example2 /> */}
+
+      {/* <ReactFormHook /> */}
+
+      <Form />
     </div>
   );
 }
